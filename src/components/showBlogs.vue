@@ -36,7 +36,7 @@ export default {
     methods: {
      deletePost(arrayElement, id) {
        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
-        .then(response => this.blogs.splice(index, 1))
+        .then(response => this.blogs.splice(0, 1))
 
         // .then(response => console.log('post has been deleted', response));
         // window.location.reload();
