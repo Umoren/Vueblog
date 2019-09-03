@@ -44,7 +44,7 @@ export default {
  .sidebar{
      /* border: 4px solid black; */
     padding: 15px;
-    background-color:lightgreen;
+    background-color:rgb(135, 207, 135);
     width: 20%;
     height: 100vh;
     bottom: 14rem;

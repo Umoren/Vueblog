@@ -1,6 +1,8 @@
 <template>
 <section>
-    <sidebars> </sidebars>
+  <aside>
+    <sidebar> </sidebar>
+  </aside>
     <div id="add-blog">
     <h2> Add a new blog post </h2>
 
@@ -11,13 +13,13 @@
       <textarea v-model.lazy="blog.content"> </textarea>
     </form>
     <div v-if="submitted">
-        <h3> Your post has been sybmitted </h3>
+        <h3> Your post has been submitted </h3>
     </div>
-    <label for="">
+    <label for=""> Author:
       <select v-model="blog.author">
         <option v-for="author in authors"> {{author}} </option>
       </select>
-
+     <br>
       <button v-on:click.prevent="post"> Add Blog </button>
     </label>
 
@@ -36,8 +38,12 @@
 
 
 <script>
+import Sidebar from '../components/Sidebar.vue';
 
 export default {
+  components: {
+    'sidebar': Sidebar
+  },
   data(){
     return{
       blog:{
@@ -64,14 +70,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #add-blog *{
     box-sizing: border-box;
+
   }
 
   #add-blog{
     margin: 20px auto;
     max-width: 500px;
+    /* border: 1px solid black; */
   }
 
   label {
@@ -95,4 +103,15 @@ export default {
     margin-top: 10px;
   }
 
+ button{
+   margin-top: 2rem;
+   padding: 1rem;
+   width: 10rem;
+   border: none;
+   background-color: skyblue;
+   font-size: 1.2rem;
+   color: white;
+   border-radius: 10px;
+
+ }
 </style>

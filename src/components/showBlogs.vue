@@ -4,12 +4,14 @@
     <sidebar> </sidebar>
   </aside>
   <div v-theme:column="'wide'" id="show-blogs">
+
     <h1>All Blog Articles </h1>
     <div v-for='blog in blogs' class="single-blog">
 
       <h2 v-rainbow> {{blog.title}} </h2>
       <article> {{blog.body}} <hr> </article>
-      <button v-on:click= "deleted"> Delete Post </button>
+      <button v-on:click= "deletePost(blog.body, blog.id)"> Delete Post </button>
+
     </div>
   </div>
 </section>
@@ -17,6 +19,7 @@
 
 <script>
 
+import axios from 'axios'
 import Sidebar from '../components/Sidebar.vue';
 
 export default {
@@ -25,17 +28,19 @@ export default {
   },
   data(){
     return {
-      blogs: []
+      blogs: [],
+
     }
   },
 
     methods: {
-      deleted: () => {
-      this.$http.delete('https://jsonplaceholder.typicode.com/posts', id)
-      .then(function(data){
-        console.log(data);
-      })
-    },
+     deletePost(arrayElement, id) {
+       axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+        .then(response => this.blogs.splice(index, 1))
+
+        // .then(response => console.log('post has been deleted', response));
+        // window.location.reload();
+     }
   },
     created() {
       this.$http.get('https://jsonplaceholder.typicode.com/posts')
@@ -79,4 +84,17 @@ export default {
   article:first-letter{
     text-transform: capitalize;
   }
+
+ button{
+   margin-top: 1rem;
+   padding: 1rem;
+   width: 10rem;
+   border: none;
+   background-color: brown;
+   font-size: 1rem;
+   color: white;
+   border-radius: 10px;
+   cursor: pointer;
+
+ }
  </style>
