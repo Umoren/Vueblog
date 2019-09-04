@@ -10,7 +10,7 @@
 
       <h2 v-rainbow> {{blog.title}} </h2>
       <article> {{blog.body}} <hr> </article>
-      <button v-on:click= "deletePost(blog.body, blog.id)"> Delete Post </button>
+      <button v-on:click= "deletePost(blog)"> Delete Post </button>
 
     </div>
   </div>
@@ -34,9 +34,11 @@ export default {
   },
 
     methods: {
-     deletePost(arrayElement, id) {
+      //this method works 
+     deletePost(id) {
+       let index = this.blogs.indexOf(id)
        axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
-        .then(response => this.blogs.splice(0, 1))
+        .then(response => this.blogs.splice(index, 1))
 
         // .then(response => console.log('post has been deleted', response));
         // window.location.reload();
