@@ -4,7 +4,7 @@
     <div class="sidebar">
       <div id="sidebar-content">
         <div class="sidebar-image">
-          <img alt="user avatar" class="avatar"  src="../assets/sammy.jpg">
+          <img alt="user avatar" class="avatar"  src="../assets/sammy.png">
           <h1 class="userName"> {{user}} </h1>
         </div>
 
@@ -22,11 +22,9 @@
 
 <script>
 
-
-
 export default {
-  data(){
-    return{
+  data () {
+    return {
       user: 'Umoren Samuel'
     }
   }
@@ -69,13 +67,12 @@ export default {
   .avatar{
     position: relative;
     z-index: 1;
-    width: 10rem;
     border: 3px solid white;
     border-radius: 10%;
     top: 0rem;
-    left: 0rem;
+    left: -1.5rem;
     height: 15rem;
-    background-size: cover;
+    object-fit: cover;
 
     /* bottom: 6rem; */
       }

@@ -6,7 +6,7 @@
   <div v-theme:column="'wide'" id="show-blogs">
 
     <h1>All Blog Articles </h1>
-    <div v-for='blog in blogs' class="single-blog">
+    <div v-for='(blog, i) in blogs' :key="i" class="single-blog">
 
       <h2 v-rainbow> {{blog.title}} </h2>
       <article> {{blog.body}} <hr> </article>
@@ -20,38 +20,38 @@
 <script>
 
 import axios from 'axios'
-import Sidebar from '../components/Sidebar.vue';
+import Sidebar from '../components/Sidebar.vue'
 
 export default {
   components: {
     'sidebar': Sidebar
   },
-  data(){
+  data () {
     return {
-      blogs: [],
+      blogs: []
 
     }
   },
 
-    methods: {
-      //this method works 
-     deletePost(id) {
-       let index = this.blogs.indexOf(id)
-       axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
+  methods: {
+    // this method works
+    deletePost (id) {
+      let index = this.blogs.indexOf(id)
+      axios.delete('https://jsonplaceholder.typicode.com/posts/' + id)
         .then(response => this.blogs.splice(index, 1))
 
-        // .then(response => console.log('post has been deleted', response));
-        // window.location.reload();
-     }
+      // .then(response => console.log('post has been deleted', response));
+      // window.location.reload();
+    }
   },
-    created() {
-      this.$http.get('https://jsonplaceholder.typicode.com/posts')
-      .then(function(data){
+  created () {
+    this.$http.get('https://jsonplaceholder.typicode.com/posts')
+      .then(function (data) {
         // console.log(data)
-        this.blogs = data.body.slice(0, 10);
+        this.blogs = data.body.slice(0, 10)
         // console.log(this.blogs)
       })
-    }
+  }
 
 }
 </script>
